@@ -1,0 +1,13 @@
+{% extends "todo_list/master.html" %}
+
+{% block title %}
+  Task Tracker
+{% endblock %}
+
+{% block content %}
+  <div class="main">
+    <h1>Task Tracker</h1>
+    <p><a href="{% url 'todo_list:display_task'%}">TASKS LIST</a></p>
+    <p><a href="{% url 'todo_list:add_task'%}">ADD TASK</a></p>
+  </div>
+{% endblock %}

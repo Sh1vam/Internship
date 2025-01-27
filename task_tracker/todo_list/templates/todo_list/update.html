@@ -1,0 +1,39 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Edit Task
+{% endblock %}
+
+{% block content %}
+  <div class="mycard">
+    <h1>Edit Task</h1>
+    <form method="post">
+      {% csrf_token %}
+      
+      <label for="title">Task Title</label>
+      <input type="text" id="title" name="title" value="{{ task.title_text }}" required><br><br>
+
+      <label for="task">Task Description</label>
+      <input type="text" id="task" name="task" value="{{ task.task_text }}" required><br><br>
+
+      <label for="deadline">Deadline</label>
+      <input type="datetime-local" id="deadline" name="deadline" value="{{ task.deadline_date|date:'Y-m-d\TH:i' }}" required><br><br>
+
+      <label for="status">Status</label>
+      <select id="status" name="status" required>
+        <option value="pending" {% if task.status_text == "pending" %}selected{% endif %}>Pending</option>
+        <option value="in_progress" {% if task.status_text == "in_progress" %}selected{% endif %}>In Progress</option>
+        <option value="completed" {% if task.status_text == "completed" %}selected{% endif %}>Completed</option>
+      </select><br><br>
+
+      <label for="priority">Priority</label>
+      <select id="priority" name="priority" required>
+        <option value="low" {% if task.priority_text == "low" %}selected{% endif %}>Low</option>
+        <option value="medium" {% if task.priority_text == "medium" %}selected{% endif %}>Medium</option>
+        <option value="high" {% if task.priority_text == "high" %}selected{% endif %}>High</option>
+      </select><br><br>
+
+      <button type="submit">Save</button>
+    </form>
+  </div>
+{% endblock %}

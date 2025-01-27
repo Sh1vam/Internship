@@ -1,0 +1,19 @@
+{% extends "master.html" %}
+
+{% block title %}
+  {{ task.title_text }} - {{ task.status_text }}
+{% endblock %}
+
+{% block content %}
+  <div class="mycard">
+    <h1>{{ task.title_text }}</h1>
+    <p><strong>Description:</strong> {{ task.task_text }}</p>
+    <p><strong>Deadline:</strong> {{ task.deadline_date }}</p>
+    <p><strong>Status:</strong> {{ task.status_text }}</p>
+
+    <div class="task-actions">
+      <a href="{% url 'todo_list:update_task' task.id %}" class="btn btn-edit">Edit</a>
+      <a href="{% url 'todo_list:delete_task' task.id %}" class="btn btn-delete">Delete</a>
+    </div>
+  </div>
+{% endblock %}

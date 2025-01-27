@@ -1,0 +1,19 @@
+{% extends "master.html" %}
+
+{% block title %}
+  TASK LIST
+{% endblock %}
+
+{% block content %}
+  <div class="mycard">
+    <h1>TASKS</h1>
+    <ul>
+      {% for task in tasks %}
+        <li class="task-item" onclick="window.location = '{% url 'todo_list:task_details' task.pk %}'">
+          {{ task.title_text }} - {{ task.priority_text }} - {{ task.status_text }} - {{ task.deadline_date }}
+        </li>
+      {% endfor %}
+      <li class="add-task" onclick="window.location = '{% url 'todo_list:add_task' %}'">ADD TASK</li>
+    </ul>
+  </div>
+{% endblock %}

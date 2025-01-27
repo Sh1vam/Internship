@@ -1,0 +1,34 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Add New Task
+{% endblock %}
+
+{% block content %}
+  <div class="mycard">
+    <h1>Add Task</h1>
+    <form method="post">
+      {% csrf_token %}
+      
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required><br><br>
+
+      <label for="task">Task Description:</label>
+      <textarea id="task" name="task" rows="4" required></textarea><br><br>
+
+      <label for="deadline">Deadline:</label>
+      <input type="date" id="deadline" name="deadline" required><br><br>
+      
+      <label for="priority">Priority:</label>
+      <select id="priority" name="priority" required>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select><br><br>
+
+      <input type="hidden" id="status" name="status" value="pending">
+
+      <button type="submit">Save</button>
+    </form>
+  </div>
+{% endblock %}
