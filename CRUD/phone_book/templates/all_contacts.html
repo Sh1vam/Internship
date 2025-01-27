@@ -1,0 +1,18 @@
+{% extends "master.html" %}
+
+{% block title %}
+  My Contacts
+{% endblock %}
+
+
+{% block content %}
+  <div class="mycard">
+    <h1>Members</h1>
+    <ul>
+      {% for x in mycontacts %}
+        <li onclick="window.location = 'details/{{ x.id }}'">{{ x.firstname }} {{ x.lastname }} {{ x.phone}}</li>
+      {% endfor %}
+      <li onclick="window.location = '/add_contact'">ADD CONTACT</li>
+    </ul>
+  </div>
+{% endblock %} 

@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{% static 'mystyle.css' %}">
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="/">HOME</a> |
+  <a href="/display_contacts">CONTACTS</a> |
+  <a href="/add_contact">ADD</a> |
+</div>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

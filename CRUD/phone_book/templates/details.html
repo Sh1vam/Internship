@@ -1,0 +1,13 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Details about {{ mycontacts.firstname }} {{ mycontacts.lastname }}
+{% endblock %}
+
+{% block content %}
+  <div class="mycard">
+    <h1>{{ mycontacts.firstname }} {{ mycontacts.lastname }}</h1>
+    <p>Phone {{ mycontacts.phone }}</p>
+    <a href="update_contact/{{ mycontacts.id }}">EDIT</a>&nbsp;<a href="delete_contact/{{ mycontacts.id }}">DELETE</a>
+  </div>
+{% endblock %}  
