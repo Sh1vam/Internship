@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <h1>Test</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="name">Enter Name:</label>
+        <input type="text" id="name" name="name" placeholder="Type your Name here" style="width: 90%; height: 40px;" required><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <p><a href="{% url 'index' %}">index</a></p>
+    <!-- Display response -->
+    {% if response %}
+        <h2>Hello {{ response.message }}</h2>
+    {% endif %}
+    {% if error %}
+        <h2>{{ error }}</h2>
+    {% endif %}
+</body>
+</html>
