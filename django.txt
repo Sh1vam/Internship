@@ -1,0 +1,91 @@
+py manage.py makemigrations app_name
+py manage.py migrate
+py manage.py sqlmigrate app_name 0001
+
+
+pip install whitenoise
+
+settings middleware  'whitenoise.middleware.WhiteNoiseMiddleware',
+
+STATIC_ROOT = BASE_DIR / 'productionfiles'
+
+STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'mystaticfiles'
+]
+
+py manage.py collectstatic
+
+py manage.py createsuperuser
+
+
+pip install django-debug-toolbar
+"django.contrib.staticfiles" installed apps "debug_toolbar"
+
+"BACKEND": "django.template.backends.django.DjangoTemplates"
+
+from django.urls import include, path
+from debug_toolbar.toolbar import debug_toolbar_urls
+
+urlpatterns = [
+    # ... the rest of your URLconf goes here ...
+] + debug_toolbar_urls()
+
+
+MIDDLEWARE = [
+    # ...
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    # ...
+]
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
+
+7. Disable the toolbar when running tests (optional)
+If you’re running tests in your project you shouldn’t activate the toolbar. You can do this by adding another setting:
+
+TESTING = "test" in sys.argv
+
+if not TESTING:
+    INSTALLED_APPS = [
+        *INSTALLED_APPS,
+        "debug_toolbar",
+    ]
+    MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+        *MIDDLEWARE,
+    ]
+You should also modify your URLconf file:
+
+from django.conf import settings
+from debug_toolbar.toolbar import debug_toolbar_urls
+
+if not settings.TESTING:
+    urlpatterns = [
+        *urlpatterns,
+    ] + debug_toolbar_urls()
+
+
+setings
+
+app_name = "todo_list"
+
+'todo_list.apps.TodoListConfig',
+
+'DIRS': [BASE_DIR / "templates"],
+DATABASES = {
+    'default': {
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Task_List',  # Database name
+        'USER': 'postgres',      # Database user
+        'PASSWORD': 'shivam2003',  # Database password
+        'HOST': 'localhost',   # Database host (default: localhost)
+        'PORT': '5432',        # Database port (default: 5432)
+    }
+}
